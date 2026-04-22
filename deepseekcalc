@@ -1,0 +1,41 @@
+# calculator.py
+print("=== ПРОСТОЙ КАЛЬКУЛЯТОР ===")
+
+# Ввод данных
+num1 = float(input("Введите первое число: "))
+operator = input("Выберите операцию (+, -, *, /, %, **): ")
+num2 = float(input("Введите второе число: "))
+
+# Вычисления
+if operator == '+':
+    result = num1 + num2
+    print(f"{num1} + {num2} = {result}")
+    
+elif operator == '-':
+    result = num1 - num2
+    print(f"{num1} - {num2} = {result}")
+    
+elif operator == '*':
+    result = num1 * num2
+    print(f"{num1} * {num2} = {result}")
+    
+elif operator == '/':
+    if num2 != 0:
+        result = num1 / num2
+        print(f"{num1} / {num2} = {result}")
+    else:
+        print("Ошибка: деление на ноль!")
+        
+elif operator == '%':
+    if num2 != 0:
+        result = num1 % num2
+        print(f"{num1} % {num2} = {result}")
+    else:
+        print("Ошибка: деление на ноль!")
+        
+elif operator == '**':
+    result = num1 ** num2
+    print(f"{num1} ** {num2} = {result}")
+    
+else:
+    print("Неизвестная операция!")

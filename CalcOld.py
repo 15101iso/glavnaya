@@ -1,0 +1,17 @@
+# Суммируется два возраста. 
+print ('Hello! Enter your name: ')
+name1 = input ()
+print ('ok, ' + name1)
+print ('Enter your year of birth: ')
+yearBirth1 = input ()
+print ('You are old ' + str (2025 - int (yearBirth1)))
+print ('Ок! Enter name your friend: ')
+name2 = input ()
+print ('Enter year of birth ' + name2)
+yearBirth2 = input ()
+print ('You friend are old ' + str (2025 - int (yearBirth2)))
+age1 = 2025 - int (yearBirth1)
+age2 = 2025 - int (yearBirth2)
+ageO = int(age1 + age2)
+print ('You and your frend - ' + str (ageO))
+

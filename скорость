@@ -1,0 +1,121 @@
+def calculate_distance(speed, time):
+    """Расчет расстояния: расстояние = скорость × время"""
+    return speed * time
+
+def calculate_speed(distance, time):
+    """Расчет скорости: скорость = расстояние / время"""
+    if time == 0:
+        raise ValueError("Время не может быть нулевым!")
+    return distance / time
+
+def calculate_time(distance, speed):
+    """Расчет времени: время = расстояние / скорость"""
+    if speed == 0:
+        raise ValueError("Скорость не может быть нулевой!")
+    return distance / speed
+
+def format_hours_minutes(hours):
+    """Форматирование часов в часы:минуты"""
+    total_minutes = hours * 60
+    hours_int = int(total_minutes // 60)
+    minutes_int = int(total_minutes % 60)
+    return f"{hours_int} ч {minutes_int} мин"
+
+def main():
+    print("=" * 50)
+    print("КАЛЬКУЛЯТОР ПУТИ, СКОРОСТИ И ВРЕМЕНИ")
+    print("=" * 50)
+    
+    while True:
+        print("\nЧто вы хотите рассчитать?")
+        print("1. Расстояние (по скорости и времени)")
+        print("2. Скорость (по расстоянию и времени)")
+        print("3. Время (по расстоянию и скорости)")
+        print("4. Таблица расстояний при разных скоростях")
+        print("5. Выход")
+        
+        choice = input("\nВыберите вариант (1-5): ")
+        
+        if choice == '5':
+            print("До свидания!")
+            break
+            
+        elif choice == '1':
+            print("\n--- РАСЧЕТ РАССТОЯНИЯ ---")
+            try:
+                speed = float(input("Введите скорость (км/ч): "))
+                time = float(input("Введите время (часы): "))
+                
+                distance = calculate_distance(speed, time)
+                print(f"\nРезультат: {distance:.2f} км")
+                print(f"При скорости {speed} км/ч за {time} ч вы проедете {distance:.1f} км")
+                
+            except ValueError:
+                print("Ошибка! Введите числа.")
+                
+        elif choice == '2':
+            print("\n--- РАСЧЕТ СКОРОСТИ ---")
+            try:
+                distance = float(input("Введите расстояние (км): "))
+                time = float(input("Введите время (часы): "))
+                
+                if time == 0:
+                    print("Ошибка! Время не может быть 0.")
+                    continue
+                    
+                speed = calculate_speed(distance, time)
+                print(f"\nРезультат: {speed:.2f} км/ч")
+                print(f"Чтобы проехать {distance} км за {time} ч, нужна скорость {speed:.1f} км/ч")
+                
+            except ValueError:
+                print("Ошибка! Введите числа.")
+                
+        elif choice == '3':
+            print("\n--- РАСЧЕТ ВРЕМЕНИ ---")
+            try:
+                distance = float(input("Введите расстояние (км): "))
+                speed = float(input("Введите скорость (км/ч): "))
+                
+                if speed == 0:
+                    print("Ошибка! Скорость не может быть 0.")
+                    continue
+                    
+                time = calculate_time(distance, speed)
+                time_formatted = format_hours_minutes(time)
+                
+                print(f"\nРезультат: {time:.2f} ч")
+                print(f"Или: {time_formatted}")
+                print(f"Чтобы проехать {distance} км со скоростью {speed} км/ч, потребуется {time:.1f} ч")
+                
+            except ValueError:
+                print("Ошибка! Введите числа.")
+                
+        elif choice == '4':
+            print("\n--- ТАБЛИЦА РАССТОЯНИЙ ---")
+            try:
+                speeds_input = input("Введите скорости через запятую (например: 60, 80, 100): ")
+                speeds = [float(s.strip()) for s in speeds_input.split(',')]
+                
+                times_input = input("Введите времена через запятую (например: 1, 2, 3): ")
+                times = [float(t.strip()) for t in times_input.split(',')]
+                
+                print("\n" + "=" * 60)
+                print("Скорость \\ Время |", end="")
+                for t in times:
+                    print(f" {t:6} ч |", end="")
+                print("\n" + "-" * 60)
+                
+                for speed in speeds:
+                    print(f"{speed:12.0f} км/ч |", end="")
+                    for time in times:
+                        distance = calculate_distance(speed, time)
+                        print(f" {distance:6.1f} км |", end="")
+                    print()
+                    
+            except ValueError:
+                print("Ошибка! Введите числа, разделенные запятыми.")
+        else:
+            print("Неверный выбор! Попробуйте снова.")
+
+if __name__ == "__main__":
+    main()

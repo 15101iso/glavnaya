@@ -1,0 +1,67 @@
+from pathlib import Path
+import random
+
+# программа расчета эффективности сотрудника. Расчет производится по схеме:
+# производительность = время * интенсивность * эргономичность
+# время в часах сколько должно быть, в минутах сколько отсутствует. соотношение в %
+# 8 часов = 8*60
+# интенс - сколько в минутах из минут занят рабочими поцессами
+# эрго - сколько времени в интенсиве тратиться на поиски значений для операции
+p = Path('my_text_file.txt')
+
+
+cars = ["Ford", "Volvo", "BMW"]
+
+for x in range(0, 1000): 
+    r = random.randint(0, 4)
+    if (x % 10):
+        cars.append(cars[r])
+    else:
+        if (r < 4):
+            cars.append(cars[r])
+        else: 
+            cars.append("fack_car")
+
+#for x in range(0, len(cars)):
+for x in cars:
+    #print(x)
+    if x == "fack_car" or x == "BMW":
+        #print(x)
+        with open("test.txt", "a") as myfile:
+            myfile.write(x + '\n')
+
+p.read_text() 
+
+if (10 == 5):
+    print("True")
+elif (10 != 5):
+    print("10 != 5")
+if (10 > 5):
+    print("10 > 5")
+
+
+
+print ('Приветствую! Давай расчитаем эффективность рабочего дня!')
+print ('Введи сколько часов длится рабочий день:')
+workHour = input ()
+workTime = int (60 * int (workHour))
+print ('Если перевести это в минуты, то получится: '+ str (workTime) +' минут')
+print ('Сколько раз пьешь чай или кофе?')
+coffeTime = input ()
+#распитие занимает в среднем (попить чай, и кофе, провести средний замер)
+coffeTime =  15 * int (coffeTime)
+print ('Ты куришь? Если нет, введи 0, если да то напиши сколько сигарет выкуриваешь за день?')
+smokeTime = input ()
+# время до места курения, курение (расчитать)
+smokeTime = 15 * int (smokeTime)
+# время вне рабочего места: кофе+сигареты+туалет 30 минут
+minusTime = coffeTime+smokeTime+30
+factWorkTime = workTime-minusTime
+workOnTime = factWorkTime/workTime
+print ('Показатель нахождения на рабочем месте составляет: ' + str (workOnTime))
+
+# следующий показатель произвоительности - интенсивность. 
+# intens = workOnTime * timeInWork
+
+
+# третий показатель - эргономичноть рабочей среды.  
